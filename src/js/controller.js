@@ -19,11 +19,8 @@ const controlRecipes = async function(){
   try {
     const id = window.location.hash.slice(1);
     if(!id) return;
-    //recipeView.renderSpinner()
     await model.loadRecipes(id);
-    console.log(model.state.recipe)
     recipeView.render(model.state.recipe);
-    // resultsView.render(model.getSearchResultsPage());
   }
   catch(err){
     console.error(err)
@@ -97,10 +94,6 @@ const controlAddRecipe = async function(newRecipe){
   }
 }
 
-const newFeature = function(){
-  console.log('Welcome to the forkify application!')
-}
-
 const init = function(){
   recipeView.addHandlerRender(controlRecipes);
   recipeView.addHandlerUpdateServings(controlServings);
@@ -109,7 +102,6 @@ const init = function(){
   paginationView.addHandlerClick(controlPagination);
   bookmarkView.addHandlerRender(controlBookmarks);
   addRecipeView.addHandlerUpload(controlAddRecipe);
-  newFeature();
 }
 
 init();
